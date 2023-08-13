@@ -23,8 +23,8 @@
 /********************************************************************************
  *                                  Macro Definition
 *********************************************************************************/
-#define SET_GROUP                   (0x0000FFFFUL)
-#define RESET_GROUP                 (0x00000000UL)
+#define SET_GROUP                   (Dio_GroupLevelType)(0xFFFFUL)
+#define RESET_GROUP                 (Dio_GroupLevelType)(0x0000UL)
 
 /********************************************************************************
  *                                  Function Prototypes

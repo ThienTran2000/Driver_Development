@@ -28,40 +28,9 @@ typedef uint16              Dio_GroupLevelType;
 /********************************************************************************
  *                                  Macro Definition
 *********************************************************************************/
-/**
- * @brief: This parameter is used for Dio_GroupType
- * @param: GPIOx_Group 
- */
-#define GPIOA_Group         0
-#define GPIOB_Group         1
-#define GPIOC_Group         2
-#define GPIOD_Group         3
-#define GPIOE_Group         4
-#define GPIOH_Group         5
 
-/**
- * @brief: This parameter is used for Dio_PinType
- * @param: GPIOx_Pin
- */
-#define GPIOx_Pin0          0
-#define GPIOx_Pin1          1
-#define GPIOx_Pin2          2
-#define GPIOx_Pin3          3
-#define GPIOx_Pin4          4
-#define GPIOx_Pin5          5
-#define GPIOx_Pin6          6
-#define GPIOx_Pin7          7
-#define GPIOx_Pin8          8
-#define GPIOx_Pin9          9
-#define GPIOx_Pin10         10
-#define GPIOx_Pin11         11
-#define GPIOx_Pin12         12
-#define GPIOx_Pin13         13
-#define GPIOx_Pin14         14
-#define GPIOx_Pin15         15
-
-#define SET_PIN             0x01
-#define RESET_PIN           0x00
+#define SET_PIN             (Dio_LevelType)0x01
+#define RESET_PIN           (Dio_LevelType)0x00
 
 /********************************************************************************
  *                                  Function Prototypes

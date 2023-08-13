@@ -28,7 +28,7 @@
  * 
  * Description          : This function return register structure pointer
  * 
- * Input parameters     : GroupId (Refer @param GPIOx_Group)
+ * Input parameters     : GroupId (Refer @param PORTx_Group)
  * 
  * Inout parameters     : None
  * 
@@ -74,7 +74,7 @@ FUNC(GPIO_RegType *) Dio_SelectGPIOx(Dio_GroupType GroupId) {
  * Description          : This function return the level of a specific pin
  * 
  * Input parameters     : GPIOx handler (Refer @param GPIOx)
- *                      : PinId (Refer @param GPIOx_Pin)
+ *                      : PinId (Refer @param PORTx_Pin)
  * 
  * Inout parameters     : None
  * 
@@ -98,7 +98,7 @@ FUNC(Dio_LevelType) Dio_HwReadPin(GPIO_RegType *pGPIOx, Dio_PinType PinId) {
  * Description          : This function write a level to a specific pin
  * 
  * Input parameters     : GPIOx handler (Refer @param GPIOx)
- *                      : PinId (Refer @param GPIOx_Pin)
+ *                      : PinId (Refer @param PORTx_Pin)
  *                      : Level
  * 
  * Inout parameters     : None
@@ -173,7 +173,7 @@ FUNC(void) Dio_HwWriteGroup(GPIO_RegType *pGPIOx, Dio_GroupLevelType Level) {
  * Description          : This function flip a specific pin and return the value of that pin after flip
  * 
  * Input parameters     : GPIOx handler (Refer @param GPIOx)
- *                      : PinId (Refer @param GPIOx_Pin)
+ *                      : PinId (Refer @param PORTx_Pin)
  * 
  * Inout parameters     : None
  * 

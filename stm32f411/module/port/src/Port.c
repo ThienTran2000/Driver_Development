@@ -1,0 +1,94 @@
+/*******************************************************************************
+ * Project: Driver Development
+ * Module: Port.c
+ * SW-Version: 1.0.0
+ * Purpose: This file to implement API of PORT
+ * Environment:
+ *              Device: stm32f411xce
+ * Author: Thien Tran
+********************************************************************************/
+
+/********************************************************************************
+ *                                  Include Section
+********************************************************************************/
+#include "stm32f411.h"
+#include "PortLLDriver.h"
+#include "Port.h"
+
+/********************************************************************************
+ *                                  Global Data
+********************************************************************************/
+
+/********************************************************************************
+ *                                  Function Implementation
+*********************************************************************************/
+
+/**
+ * Function name        : Port_Init
+ * 
+ * Description          : This function to initialize for PORT module
+ * 
+ * Input parameters     : ConfigPtr
+ * 
+ * Inout parameters     : None
+ * 
+ * Output parameters    : None
+ * 
+ * Return parameter     : None
+ * 
+ * Registers used       : None
+ * 
+*/
+FUNC(void) Port_Init(Port_ConfigType *ConfigPtr) {
+
+}
+
+
+/**
+ * Function name        : Port_SetPinMode
+ * 
+ * Description          : This function to set the mode for Pin
+ * 
+ * Input parameters     : GroupId (Refer @param PORTx_Group)
+ *                      : PinId (Refer @param PORTx_Pin)
+ *                      : PinMode
+ * 
+ * Inout parameters     : None
+ * 
+ * Output parameters    : None
+ * 
+ * Return parameter     : None
+ * 
+ * Registers used       : None
+ * 
+*/
+FUNC(void) Port_SetPinMode(Port_GroupType GroupId, Port_PinType PinId, Port_PinModeType PinMode) {
+
+}
+
+
+/**
+ * Function name        : Port_SetToAlternateMode
+ * 
+ * Description          : This function to set the mode for alternate functionality
+ * 
+ * Input parameters     : GroupId (Refer @param PORTx_Group)
+ *                      : PinId (Refer @param PORTx_Pin)
+ *                      : AltMode
+ * 
+ * Inout parameters     : None
+ * 
+ * Output parameters    : None
+ * 
+ * Return parameter     : None
+ * 
+ * Registers used       : None
+ * 
+*/
+FUNC(void) Port_SetToAlternateMode(Port_GroupType GroupId, Port_PinType PinId, Port_PinAlternateType AltMode) {
+
+}
+
+/********************************************************************************
+ *                                  End of file
+*********************************************************************************/

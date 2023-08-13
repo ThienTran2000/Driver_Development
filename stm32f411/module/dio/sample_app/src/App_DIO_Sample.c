@@ -37,8 +37,8 @@ int main() {
     Dio_LevelType LPinCheckLevel = 0;
 
     /* Checkpoint 1: Check for Dio_ReadPin and Dio_WritePin */
-    Dio_WritePin(GPIOD_Group, GPIOx_Pin0, SET_PIN);
-    LPinCheckLevel = Dio_ReadPin(GPIOD_Group, GPIOx_Pin0);
+    Dio_WritePin(PORTD_Group, PORTx_Pin0, SET_PIN);
+    LPinCheckLevel = Dio_ReadPin(PORTD_Group, PORTx_Pin0);
 
     if (LPinCheckLevel == SET_PIN) {
         GHighLevelCheck = TRUE;
@@ -46,8 +46,8 @@ int main() {
         GHighLevelCheck = FALSE;
     }
 
-    Dio_WritePin(GPIOD_Group, GPIOx_Pin0, RESET_PIN);
-    LPinCheckLevel = Dio_ReadPin(GPIOD_Group, GPIOx_Pin0);
+    Dio_WritePin(PORTD_Group, PORTx_Pin0, RESET_PIN);
+    LPinCheckLevel = Dio_ReadPin(PORTD_Group, PORTx_Pin0);
 
     if (LPinCheckLevel == RESET_PIN) {
         GHLowLevelCheck = TRUE;
@@ -64,8 +64,8 @@ int main() {
 
     /* Checkpoint 2: Check for Dio_ReadGroup and Dio_WriteGroup */
     LGroupCheckLevel = 0;
-    Dio_WriteGroup(GPIOD_Group, SET_GROUP);
-    LGroupCheckLevel = Dio_ReadGroup(GPIOD_Group);
+    Dio_WriteGroup(PORTD_Group, SET_GROUP);
+    LGroupCheckLevel = Dio_ReadGroup(PORTD_Group);
 
     if (LGroupCheckLevel == SET_GROUP) {
         GHighLevelCheck = TRUE;
@@ -73,8 +73,8 @@ int main() {
         GHighLevelCheck = FALSE;
     }
 
-    Dio_WriteGroup(GPIOD_Group, RESET_GROUP);
-    LGroupCheckLevel = Dio_ReadGroup(GPIOD_Group);
+    Dio_WriteGroup(PORTD_Group, RESET_GROUP);
+    LGroupCheckLevel = Dio_ReadGroup(PORTD_Group);
 
     if (LGroupCheckLevel == RESET_GROUP) {
         GHLowLevelCheck = TRUE;
@@ -87,10 +87,10 @@ int main() {
     /* End Checkpoint 2 */
 
     /* Checkpoint 3: Check for Dio_FlipPin */
-    LPinCheckLevel = Dio_ReadPin(GPIOD_Group, GPIOx_Pin0);
+    LPinCheckLevel = Dio_ReadPin(PORTD_Group, PORTx_Pin0);
 
     Dio_LevelType LPinCheckFlip = 0;
-    LPinCheckFlip = Dio_FlipPin(GPIOD_Group, GPIOx_Pin0);
+    LPinCheckFlip = Dio_FlipPin(PORTD_Group, PORTx_Pin0);
     
     if (LPinCheckLevel != LPinCheckFlip) {
         GHighLevelCheck = TRUE;
@@ -98,8 +98,8 @@ int main() {
         GHighLevelCheck = FALSE;
     }
 
-    LPinCheckLevel = Dio_ReadPin(GPIOD_Group, GPIOx_Pin0);
-    LPinCheckFlip = Dio_FlipPin(GPIOD_Group, GPIOx_Pin0);
+    LPinCheckLevel = Dio_ReadPin(PORTD_Group, PORTx_Pin0);
+    LPinCheckFlip = Dio_FlipPin(PORTD_Group, PORTx_Pin0);
     
     if (LPinCheckLevel != LPinCheckFlip) {
         GHLowLevelCheck = TRUE;

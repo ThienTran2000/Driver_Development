@@ -28,8 +28,8 @@
  * 
  * Description          : This function return the level of a specific pin
  * 
- * Input parameters     : GroupId (Refer @param GPIOx_Group)
- *                      : PinId (Refer @param GPIOx_Pin)
+ * Input parameters     : GroupId (Refer @param PORTx_Group)
+ *                      : PinId (Refer @param PORTx_Pin)
  * 
  * Inout parameters     : None
  * 
@@ -56,8 +56,8 @@ FUNC(Dio_LevelType) Dio_ReadPin(Dio_GroupType GroupId, Dio_PinType PinId) {
  * 
  * Description          : This function write a level to a specific pin
  * 
- * Input parameters     : GroupId (Refer @param GPIOx_Group)
- *                      : PinId (Refer @param GPIOx_Pin)
+ * Input parameters     : GroupId (Refer @param PORTx_Group)
+ *                      : PinId (Refer @param PORTx_Pin)
  *                      : Level
  * 
  * Inout parameters     : None
@@ -83,7 +83,7 @@ FUNC(void) Dio_WritePin(Dio_GroupType GroupId, Dio_PinType PinId, Dio_LevelType 
  * 
  * Description          : This function return the level of all pins of a specific Group
  * 
- * Input parameters     : GroupId (Refer @param GPIOx_Group)
+ * Input parameters     : GroupId (Refer @param PORTx_Group)
  * 
  * Inout parameters     : None
  * 
@@ -110,7 +110,7 @@ FUNC(Dio_GroupLevelType) Dio_ReadGroup(Dio_GroupType GroupId) {
  * 
  * Description          : This function write a level to all pins of a specific Group
  * 
- * Input parameters     : GroupId (Refer @param GPIOx_Group)
+ * Input parameters     : GroupId (Refer @param PORTx_Group)
  *                      : Level
  * 
  * Inout parameters     : None
@@ -135,8 +135,8 @@ FUNC(void) Dio_WriteGroup(Dio_GroupType GroupId, Dio_GroupLevelType Level) {
  * 
  * Description          : This function flip a specific pin and return the value of that pin after flip
  * 
- * Input parameters     : GroupId (Refer @param GPIOx_Group)
- *                      : PinId (Refer @param GPIOx_Pin)
+ * Input parameters     : GroupId (Refer @param PORTx_Group)
+ *                      : PinId (Refer @param PORTx_Pin)
  * 
  * Inout parameters     : None
  * 

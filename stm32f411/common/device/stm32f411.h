@@ -94,6 +94,38 @@ typedef struct St_GPIO_RegType {
 #define GPIOE_BASE_ADDR                 (0x40021000UL)
 #define GPIOH_BASE_ADDR                 (0x40021C00UL)
 
+/**
+ * @brief: This parameter is used for Dio_GroupType
+ * @param: PORTx_Group 
+ */
+#define PORTA_Group         0
+#define PORTB_Group         1
+#define PORTC_Group         2
+#define PORTD_Group         3
+#define PORTE_Group         4
+#define PORTH_Group         5
+
+/**s
+ * @brief: This parameter is used for Dio_PinType
+ * @param: PORTx_Pin
+ */
+#define PORTx_Pin0          0
+#define PORTx_Pin1          1
+#define PORTx_Pin2          2
+#define PORTx_Pin3          3
+#define PORTx_Pin4          4
+#define PORTx_Pin5          5
+#define PORTx_Pin6          6
+#define PORTx_Pin7          7
+#define PORTx_Pin8          8
+#define PORTx_Pin9          9
+#define PORTx_Pin10         10
+#define PORTx_Pin11         11
+#define PORTx_Pin12         12
+#define PORTx_Pin13         13
+#define PORTx_Pin14         14
+#define PORTx_Pin15         15
+
 /* Define TRUE/FALSE for boolean value */
 #define TRUE                            1
 #define FALSE                           0
