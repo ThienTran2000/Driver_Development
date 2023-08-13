@@ -84,6 +84,7 @@ typedef struct St_GPIO_RegType {
 #define SRAM                            SRAM1_BASEADDR
 
 #define FUNC(rettype)                   rettype
+#define NULL                            (0x00000000UL)
 
 /* Define base address for GPIO */
 #define GPIOA_BASE_ADDR                 (0x40020000UL)
@@ -93,13 +94,25 @@ typedef struct St_GPIO_RegType {
 #define GPIOE_BASE_ADDR                 (0x40021000UL)
 #define GPIOH_BASE_ADDR                 (0x40021C00UL)
 
+/* Define TRUE/FALSE for boolean value */
+#define TRUE                            1
+#define FALSE                           0
+
 /* Define base address for RCC */
 #define RCC_BASE_ADDR                   (0x40023800UL)
 
 /* RCC register structure handler */
+/**
+ * @brief: This parameter is used for RCC_RegType *
+ * @param: RCC
+ */
 #define RCC                             ((RCC_RegType *)RCC_BASE_ADDR)
 
 /* GPIOx register structure handler */
+/**
+ * @brief: This parameter is used for GPIO_RegType *
+ * @param: GPIOx
+ */
 #define GPIOA                           ((GPIO_RegType *)GPIOA_BASE_ADDR)
 #define GPIOB                           ((GPIO_RegType *)GPIOB_BASE_ADDR)
 #define GPIOC                           ((GPIO_RegType *)GPIOC_BASE_ADDR)

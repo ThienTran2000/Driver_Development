@@ -43,6 +43,7 @@ typedef uint16              Dio_GroupLevelType;
  * @brief: This parameter is used for Dio_PinType
  * @param: GPIOx_Pin
  */
+#define GPIOx_Pin0          0
 #define GPIOx_Pin1          1
 #define GPIOx_Pin2          2
 #define GPIOx_Pin3          3
@@ -59,6 +60,9 @@ typedef uint16              Dio_GroupLevelType;
 #define GPIOx_Pin14         14
 #define GPIOx_Pin15         15
 
+#define SET_PIN             0x01
+#define RESET_PIN           0x00
+
 /********************************************************************************
  *                                  Function Prototypes
 *********************************************************************************/
@@ -66,16 +70,13 @@ typedef uint16              Dio_GroupLevelType;
 extern FUNC(Dio_LevelType) Dio_ReadPin(Dio_GroupType GroupId, Dio_PinType PinId);
 
 /* Function for DIO write pin API */
-extern FUNC(void) Dio_WritePin(Dio_GroupType GroupId, Dio_PinType PinId);
+extern FUNC(void) Dio_WritePin(Dio_GroupType GroupId, Dio_PinType PinId, Dio_LevelType Level);
 
 /* Function for DIO read group API */
 extern FUNC(Dio_GroupLevelType) Dio_ReadGroup(Dio_GroupType GroupId);
 
 /* Function for DIO write group API */
-extern FUNC(Dio_GroupLevelType) Dio_WriteGroup(Dio_GroupType GroupId);
-
-/* Function for DIO write group API */
-extern FUNC(Dio_GroupLevelType) Dio_WriteGroup(Dio_GroupType GroupId);
+extern FUNC(void) Dio_WriteGroup(Dio_GroupType GroupId, Dio_GroupLevelType Level);
 
 /* Function for DIO flip pin API */
 extern FUNC(Dio_LevelType) Dio_FlipPin(Dio_GroupType GroupId, Dio_PinType PinId);
