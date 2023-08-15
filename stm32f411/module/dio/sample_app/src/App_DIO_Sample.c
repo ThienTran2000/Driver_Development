@@ -118,7 +118,7 @@ void Mcu_Init() {
 
 void Clock_Init() {
     /* Enable clock for all GPIOx Groups */
-    RCC->ulAHB1ENR = 0x0000009F;
+    RCC->AHB1ENR = 0x0000009F;
 }
 
 void Port_Init() {

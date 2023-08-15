@@ -33,33 +33,33 @@ typedef double              float64;
 /* Define a registers structure for RCC module */
 typedef struct St_RCC_RegType
 {
-    uint32   ulCR;                      /* Address offset 0x00 -> CR */
-    uint32   ulPLLCFGR;                 /* Address offset 0x04 -> PLLCFGR */
-    uint32   ulCFGR;                    /* Address offset 0x08 -> CFGR */
-    uint32   ulCIR;                     /* Address offset 0x0C -> CIR */
-    uint32   ulAHB1RSTR;                /* Address offset 0x10 -> AHB1RSTR */
-    uint32   ulAHB2RSTR;                /* Address offset 0x14 -> AHB2RSTR */
+    uint32   CR;                      /* Address offset 0x00 -> CR */
+    uint32   PLLCFGR;                 /* Address offset 0x04 -> PLLCFGR */
+    uint32   CFGR;                    /* Address offset 0x08 -> CFGR */
+    uint32   CIR;                     /* Address offset 0x0C -> CIR */
+    uint32   AHB1RSTR;                /* Address offset 0x10 -> AHB1RSTR */
+    uint32   AHB2RSTR;                /* Address offset 0x14 -> AHB2RSTR */
     uint32   reserved1[2];              /* Address offset 0x18, 0x1C -> Reserved */
-    uint32   ulAPB1RSTR;                /* Address offset 0x20 -> APB1RSTR */
-    uint32   ulAPB2RSTR;                /* Address offset 0x24 -> APB2RSTR */
+    uint32   APB1RSTR;                /* Address offset 0x20 -> APB1RSTR */
+    uint32   APB2RSTR;                /* Address offset 0x24 -> APB2RSTR */
     uint32   reserved2[2];              /* Address offset 0x28, 0x2C -> Reserved */
-    uint32   ulAHB1ENR;                 /* Address offset 0x30 -> AHB1ENR */
-    uint32   ulAHB2ENR;                 /* Address offset 0x34 -> AHB2ENR */
+    uint32   AHB1ENR;                 /* Address offset 0x30 -> AHB1ENR */
+    uint32   AHB2ENR;                 /* Address offset 0x34 -> AHB2ENR */
     uint32   reserved3[2];              /* Address offset 0x38, 0x3C -> Reserved */
-    uint32   ulAPB1ENR;                 /* Address offset 0x40 -> APB1ENR */
-    uint32   ulAPB2ENR;                 /* Address offset 0x44 -> APB2ENR */
+    uint32   APB1ENR;                 /* Address offset 0x40 -> APB1ENR */
+    uint32   APB2ENR;                 /* Address offset 0x44 -> APB2ENR */
     uint32   reserved4[2];              /* Address offset 0x48, 0x4C -> Reserved */
-    uint32   ulAHB1LPENR;               /* Address offset 0x50 -> AHB1LPENR */
-    uint32   ulAHB2LPENR;               /* Address offset 0x54 -> AHB2LPENR */
+    uint32   AHB1LPENR;               /* Address offset 0x50 -> AHB1LPENR */
+    uint32   AHB2LPENR;               /* Address offset 0x54 -> AHB2LPENR */
     uint32   reserved5[2];              /* Address offset 0x58, 0x5C -> Reserved */
-    uint32   ulAPB1LPENR;               /* Address offset 0x60 -> APB1LPENR */
-    uint32   ulAPB2LPENR;               /* Address offset 0x64 -> APB2LPENR */
+    uint32   APB1LPENR;               /* Address offset 0x60 -> APB1LPENR */
+    uint32   APB2LPENR;               /* Address offset 0x64 -> APB2LPENR */
     uint32   reserved6[2];              /* Address offset 0x68, 0x6C -> Reserved */
-    uint32   ulBDCR;                    /* Address offset 0x70 -> BDCR */
-    uint32   ulCSR;                     /* Address offset 0x74 -> CSR */
+    uint32   BDCR;                    /* Address offset 0x70 -> BDCR */
+    uint32   CSR;                     /* Address offset 0x74 -> CSR */
     uint32   reserved7[2];              /* Address offset 0x78, 0x7C -> Reserved */
-    uint32   ulSSCGR;                   /* Address offset 0x80 -> SSCGR */
-    uint32   ulPLLI2SCFGR;              /* Address offset 0x84 -> PLLI2SCFGR */
+    uint32   SSCGR;                   /* Address offset 0x80 -> SSCGR */
+    uint32   PLLI2SCFGR;              /* Address offset 0x84 -> PLLI2SCFGR */
 } RCC_RegType;
 
 /* Define a registers structure for GPIO module */
@@ -84,7 +84,7 @@ typedef struct St_GPIO_RegType {
 #define SRAM                            SRAM1_BASEADDR
 
 #define FUNC(rettype)                   rettype
-#define NULL                            (0x00000000UL)
+#define NULL                            (void *)0x00000000UL
 
 /* Define base address for GPIO */
 #define GPIOA_BASE_ADDR                 (0x40020000UL)

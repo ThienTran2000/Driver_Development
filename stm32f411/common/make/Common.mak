@@ -11,14 +11,18 @@ CC_FILE_TO_BUILD = \
 	$(ROOT_FOLDER)\common\startup\startup.s \
 	$(ROOT_FOLDER)\module\dio\src\Dio.c \
 	$(ROOT_FOLDER)\module\dio\src\DioLLDriver.c \
-	$(ROOT_FOLDER)\module\dio\sample_app\src\App_DIO_Sample.c
+	$(ROOT_FOLDER)\module\port\src\Dio.c \
+	$(ROOT_FOLDER)\module\port\src\PortLLDriver.c \
+	$(ROOT_FOLDER)\module\port\sample_app\src\App_PORT_Sample.c
 
 CC_INCLUDE_PATH = \
 	-I$(ROOT_FOLDER)\common\device \
 	-I$(ROOT_FOLDER)\module\dio\include \
-	-I$(ROOT_FOLDER)\module\dio\sample_app\include
+	-I$(ROOT_FOLDER)\module\dio\sample_app\include \
+	-I$(ROOT_FOLDER)\module\port\include \
+	-I$(ROOT_FOLDER)\module\port\sample_app\include
 
-App_DIO_Sample.elf:$(DEBUG_PATH)\startup.o $(DEBUG_PATH)\Dio.o $(DEBUG_PATH)\DioLLDriver.o $(DEBUG_PATH)\App_DIO_Sample.o
+App_PORT_Sample.elf:$(DEBUG_PATH)\startup.o $(DEBUG_PATH)\Dio.o $(DEBUG_PATH)\PortLLDriver.o $(DEBUG_PATH)\Port.o $(DEBUG_PATH)\DioLLDriver.o $(DEBUG_PATH)\App_PORT_Sample.o
 	@echo Linking...
 	$(CC) $(LDFLAGS) -o $(DEBUG_PATH)\$@ $^
 	@echo Done
@@ -42,7 +46,19 @@ $(DEBUG_PATH)\DioLLDriver.o:$(ROOT_FOLDER)\module\dio\src\DioLLDriver.c
 	@echo Done
 	@echo -----------------------------------------------------
 
-$(DEBUG_PATH)\App_DIO_Sample.o:$(ROOT_FOLDER)\module\dio\sample_app\src\App_DIO_Sample.c
+$(DEBUG_PATH)\Port.o:$(ROOT_FOLDER)\module\port\src\Port.c
+	@echo Compiling $@ ...
+	$(CC) $(CFLAGS) $(CC_INCLUDE_PATH) $< -o $@
+	@echo Done
+	@echo -----------------------------------------------------
+
+$(DEBUG_PATH)\PortLLDriver.o:$(ROOT_FOLDER)\module\port\src\PortLLDriver.c
+	@echo Compiling $@ ...
+	$(CC) $(CFLAGS) $(CC_INCLUDE_PATH) $< -o $@
+	@echo Done
+	@echo -----------------------------------------------------
+
+$(DEBUG_PATH)\App_PORT_Sample.o:$(ROOT_FOLDER)\module\port\sample_app\src\App_PORT_Sample.c
 	@echo Compiling $@ ...
 	$(CC) $(CFLAGS) $(CC_INCLUDE_PATH) $< -o $@
 	@echo Done

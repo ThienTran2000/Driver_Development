@@ -1,6 +1,6 @@
 /*******************************************************************************
  * Project: Driver Development
- * Module: Dio.h
+ * Module: Port.h
  * SW-Version: 1.0.0
  * Purpose: This file contain macros, function prototype for source application for PORT module
  * Environment:
@@ -21,6 +21,8 @@
 ********************************************************************************/
 typedef uint8       Port_PinType;
 typedef uint8       Port_GroupType;
+typedef uint8       Port_NumberPinType;
+typedef uint8       Port_NumberGroupType;
 
 /* This is enum type for Pin output mode */
 typedef enum E_Port_PinOutputType {
@@ -87,7 +89,8 @@ typedef struct St_PortPinConfigType {
 /* This is a config for PORT module to initialize */
 typedef struct St_PortConfigType {
     Port_GroupType GroupId;
-    Port_PinConfigType PinConfig[];
+    Port_NumberPinType NumberPins;
+    Port_PinConfigType *PinConfig;
 } Port_ConfigType;
 
 /********************************************************************************
@@ -98,7 +101,7 @@ typedef struct St_PortConfigType {
  *                                  Function Prototypes
 *********************************************************************************/
 /* Function for Port initialize API */
-extern FUNC(void) Port_Init(Port_ConfigType *ConfigPtr);
+extern FUNC(void) Port_Init(Port_ConfigType *ConfigPtr, Port_NumberGroupType NumberGroups);
 
 /* Function for Port set pin mode API */
 extern FUNC(void) Port_SetPinMode(Port_GroupType GroupId, Port_PinType PinId, Port_PinModeType PinMode);
