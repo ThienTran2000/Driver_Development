@@ -28,8 +28,6 @@
 /********************************************************************************
  *                                  Function Prototypes
 *********************************************************************************/
-/* Function for DIO select API */
-extern FUNC(GPIO_RegType *) Dio_SelectGPIOx(Dio_GroupType GroupId);
 
 /* Function for Dio access hardware to read level of a pin */
 extern FUNC(Dio_LevelType) Dio_HwReadPin(GPIO_RegType *pGPIOx, Dio_PinType PinId);

@@ -14,6 +14,7 @@
 #include "Dio.h"
 #include "Port.h"
 #include "stm32f411.h"
+#include "PortLLDriver.h"
 
 void Mcu_Init();
 void Clock_Init();
@@ -24,18 +25,18 @@ void Clock_Init();
 Port_PinConfigType GPinConfigSet1[2] = {
     {
         PORTx_Pin0,
-        PIN_ANALOG_MODE,
+        PIN_IT_BOTH,
         PIN_PUSH_PULL,
         PIN_HIGH_SPEED,
         PIN_PD,
         PIN_ALT0,
     },
     {
-        PORTx_Pin1,
-        PIN_ANALOG_MODE,
-        0,
-        0,
-        0,
+        PORTx_Pin0,
+        PIN_IN_MODE,
+        PIN_PUSH_PULL,
+        PIN_HIGH_SPEED,
+        PIN_PD,
         0
     }
 };
@@ -91,13 +92,28 @@ int main() {
     /* Set mode for pin */
     Port_SetPinMode(PORTB_Group, PORTx_Pin0, PIN_ALT_MODE);
     Port_SetToAlternateMode(PORTB_Group, PORTx_Pin0, PIN_ALT1);
+
+    /* Testing for external interrupt */
+    Port_InterruptConfig(6, 5, ENABLE);
+    while(1);
 }
 
+/* Mcu init */
 void Mcu_Init() {
     Clock_Init();
 }
 
+/* Clock init */
 void Clock_Init() {
     /* Enable clock for all GPIOx Groups */
     RCC->AHB1ENR = 0x0000009F;
+    /* Enable clock for all SYSCFG */
+    RCC->APB2ENR = 0x00004000;
+}
+
+/* Interrupt handling */
+void EXTI0_IRQHandler() {
+    Port_InterruptHandling(0);
+    int i = 0;
+    i ++;
 }

@@ -66,7 +66,7 @@ typedef enum E_Port_PinAlternateType {
     PIN_ALT12,
     PIN_ALT13,
     PIN_ALT14,
-    PIN_ALT15,
+    PIN_ALT15
 } Port_PinAlternateType;
 
 /* This is enum type for Pin pull-up, pull-down */
@@ -93,10 +93,20 @@ typedef struct St_PortConfigType {
     Port_PinConfigType *PinConfig;
 } Port_ConfigType;
 
+/* This is type for interrupt number*/
+typedef uint8 Port_IQRNumberType;
+
+/* This is type for interrupt priority */
+typedef uint8 Port_IQRPriorityType;
+
+typedef enum E_PortIQREnableOrDisable {
+    ENABLE,
+    DISABLE
+} Port_IQREnableOrDisable;
+
 /********************************************************************************
  *                                  Macro Definition
 *********************************************************************************/
-
 /********************************************************************************
  *                                  Function Prototypes
 *********************************************************************************/

@@ -24,51 +24,6 @@
 *********************************************************************************/
 
 /**
- * Function name        : Dio_SelectGPIOx
- * 
- * Description          : This function return register structure pointer
- * 
- * Input parameters     : GroupId (Refer @param PORTx_Group)
- * 
- * Inout parameters     : None
- * 
- * Output parameters    : None
- * 
- * Return parameter     : Return register structure pointer
- * 
- * Registers used       : None
- * 
-*/
-FUNC(GPIO_RegType *) Dio_SelectGPIOx(Dio_GroupType GroupId) {
-    /* Create a return value*/
-    GPIO_RegType *LpGPIOx;
-    LpGPIOx = NULL;
-    if (GroupId == 0) {
-        LpGPIOx = GPIOA;
-    }
-    else if (GroupId == 1) {
-        LpGPIOx = GPIOB;
-    } 
-    else if (GroupId == 2) {
-        LpGPIOx = GPIOC;
-    } 
-    else if (GroupId == 3) {
-        LpGPIOx = GPIOD;
-    } 
-    else if (GroupId == 4) {
-        LpGPIOx = GPIOE;
-    } 
-    else if (GroupId == 5) {
-        LpGPIOx =GPIOH;
-    }
-    else {
-        /* Do nothing */
-    }
-    return LpGPIOx;
-}
-
-
-/**
  * Function name        : Dio_HwReadPin
  * 
  * Description          : This function return the level of a specific pin

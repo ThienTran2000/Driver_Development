@@ -44,7 +44,7 @@ FUNC(Dio_LevelType) Dio_ReadPin(Dio_GroupType GroupId, Dio_PinType PinId) {
     /* Create a return value */
     Dio_LevelType LRet;
     GPIO_RegType *LpGPIOx;
-    LpGPIOx = Dio_SelectGPIOx(GroupId);
+    LpGPIOx = PORT_GROUP_TO_GPIO(GroupId);
     /* Call Hardware function to read the value of pin */
     LRet = Dio_HwReadPin(LpGPIOx, PinId);
     return LRet;
@@ -71,7 +71,7 @@ FUNC(Dio_LevelType) Dio_ReadPin(Dio_GroupType GroupId, Dio_PinType PinId) {
 */
 FUNC(void) Dio_WritePin(Dio_GroupType GroupId, Dio_PinType PinId, Dio_LevelType Level) {
     GPIO_RegType *LpGPIOx;
-    LpGPIOx = Dio_SelectGPIOx(GroupId);
+    LpGPIOx = PORT_GROUP_TO_GPIO(GroupId);
     /* Call Hardware function to write a value to a pin */
     Dio_HwWritePin(LpGPIOx, PinId, Level);
     return;
@@ -98,7 +98,7 @@ FUNC(Dio_GroupLevelType) Dio_ReadGroup(Dio_GroupType GroupId) {
     /* Create a return value */
     Dio_GroupLevelType LRet;
     GPIO_RegType *LpGPIOx;
-    LpGPIOx = Dio_SelectGPIOx(GroupId);
+    LpGPIOx = PORT_GROUP_TO_GPIO(GroupId);
     /* Call Hardware function to read the value of group */
     LRet = Dio_HwReadGroup(LpGPIOx);
     return LRet;
@@ -124,7 +124,7 @@ FUNC(Dio_GroupLevelType) Dio_ReadGroup(Dio_GroupType GroupId) {
 */
 FUNC(void) Dio_WriteGroup(Dio_GroupType GroupId, Dio_GroupLevelType Level) {
     GPIO_RegType *LpGPIOx;
-    LpGPIOx = Dio_SelectGPIOx(GroupId);
+    LpGPIOx = PORT_GROUP_TO_GPIO(GroupId);
     /* Call Hardware function to write a value to a group */
     Dio_HwWriteGroup(LpGPIOx, Level);
     return;
@@ -151,7 +151,7 @@ FUNC(Dio_LevelType) Dio_FlipPin(Dio_GroupType GroupId, Dio_PinType PinId) {
     /* Create a return value */
     Dio_LevelType LRet;
     GPIO_RegType *LpGPIOx;
-    LpGPIOx = Dio_SelectGPIOx(GroupId);
+    LpGPIOx = PORT_GROUP_TO_GPIO(GroupId);
     /* Call Hardware function to read the value of group */
     LRet = Dio_HwFlipPin(LpGPIOx, PinId);
     return LRet;

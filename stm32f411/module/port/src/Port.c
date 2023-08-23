@@ -28,7 +28,7 @@
  * 
  * Description          : This function to initialize for PORT module
  * 
- * Input parameters     : ConfigPtr
+ * Input parameters     : ConfigPtr, NumberGroups
  * 
  * Inout parameters     : None
  * 
@@ -46,7 +46,7 @@ FUNC(void) Port_Init(Port_ConfigType *ConfigPtr, Port_NumberGroupType NumberGrou
     uint8 LIndex;
     for (LIndex = 0; LIndex < NumberGroups; LIndex++) {
         GPIO_RegType *LpGPIOx;
-        LpGPIOx = Port_SelectGPIOx(LpConfig->GroupId);
+        LpGPIOx = PORT_GROUP_TO_GPIO(LpConfig->GroupId);
         /* Init hardware */
         Port_HwInitGroup(LpGPIOx, LpConfig->PinConfig, LpConfig->NumberPins);
         LpConfig++;
@@ -75,7 +75,7 @@ FUNC(void) Port_Init(Port_ConfigType *ConfigPtr, Port_NumberGroupType NumberGrou
 */
 FUNC(void) Port_SetPinMode(Port_GroupType GroupId, Port_PinType PinId, Port_PinModeType PinMode) {
     GPIO_RegType *LpGPIOx;
-    LpGPIOx = Port_SelectGPIOx(GroupId);
+    LpGPIOx = PORT_GROUP_TO_GPIO(GroupId);
     /* Set pin mode hardware */
     Port_HwSetPinMode(LpGPIOx, PinId, PinMode);
     return;
@@ -102,7 +102,7 @@ FUNC(void) Port_SetPinMode(Port_GroupType GroupId, Port_PinType PinId, Port_PinM
 */
 FUNC(void) Port_SetToAlternateMode(Port_GroupType GroupId, Port_PinType PinId, Port_PinAlternateType AltMode) {
     GPIO_RegType *LpGPIOx;
-    LpGPIOx = Port_SelectGPIOx(GroupId);
+    LpGPIOx = PORT_GROUP_TO_GPIO(GroupId);
     /* Set alternate functionality hardware */
     Port_HwSetToAlternateMode(LpGPIOx, PinId, AltMode);
     return;

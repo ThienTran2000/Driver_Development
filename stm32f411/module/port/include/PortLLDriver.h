@@ -28,8 +28,6 @@
 /********************************************************************************
  *                                  Function Prototypes
 *********************************************************************************/
-/* Function for PORT select API */
-extern FUNC(GPIO_RegType *) Port_SelectGPIOx(Port_GroupType GroupId);
 
 /* Function for PORT init GPIO group API */
 extern FUNC(void) Port_HwInitGroup(GPIO_RegType *GPIOx, Port_PinConfigType *pinConfigPtr, Port_NumberPinType NumberPins);
@@ -39,6 +37,12 @@ extern FUNC(void) Port_HwSetPinMode(GPIO_RegType *GPIOx, Port_PinType PinId, Por
 
 /* Function for PORT set alternate functionality API */
 extern FUNC(void) Port_HwSetToAlternateMode(GPIO_RegType *GPIOx, Port_PinType PinId, Port_PinAlternateType AltMode);
+
+/* Function for PORT set interrupt config port pin API */
+extern FUNC(void) Port_InterruptConfig(Port_IQRNumberType IQRNumber, Port_IQRPriorityType IQRPriority, Port_IQREnableOrDisable EnbOrDib);
+
+/* Function for PORT clear the corresponding bit in EXTI Pending register API */
+extern FUNC(void) Port_InterruptHandling(Port_PinType PinId);
 
 #endif /* PORTLLDRIVER_H */
 
