@@ -48,7 +48,7 @@ FUNC(void) Port_HwInitGroup(GPIO_RegType *GPIOx, Port_PinConfigType *pinConfigPt
         /* Config pin mode for Input, Output, Alternate and Analog mode */
         if (LpConfig->PinMode <= PIN_ANALOG_MODE) {
             /* Clean the correspond bits field first */
-            GPIOx->MODER &= ~(0x11 << 2*(LpConfig->PinId));
+            GPIOx->MODER &= ~(0x03 << 2*(LpConfig->PinId));
             /* Set the correspond bits field */
             GPIOx->MODER |= (LpConfig->PinMode) << 2*(LpConfig->PinId);
         }
@@ -98,26 +98,26 @@ FUNC(void) Port_HwInitGroup(GPIO_RegType *GPIOx, Port_PinConfigType *pinConfigPt
 
         /* Config speed */
         /* Clean the correspond bits field first */
-        GPIOx->OSPEEDR &= ~(0x11 << 2*(LpConfig->PinId));
+        GPIOx->OSPEEDR &= ~(0x03 << 2*(LpConfig->PinId));
         /* Set the correspond bits field */
         GPIOx->OSPEEDR |= (LpConfig->PinSpeed) << 2*(LpConfig->PinId);
 
         /* Config Pull-up Pull-down */
         /* Clean the correspond bits field first */
-        GPIOx->PUPDR &= ~(0x11 << 2*(LpConfig->PinId));
+        GPIOx->PUPDR &= ~(0x03 << 2*(LpConfig->PinId));
         /* Set the correspond bits field */
         GPIOx->PUPDR |= (LpConfig->PinPUPD) << 2*(LpConfig->PinId);
 
         /* Config alternate functionality */
         if (LpConfig->AlternativeMode <= 7) {
             /* Clean the correspond bits field first */
-            GPIOx->AFRL &= ~(0x11 << 2*(LpConfig->PinId));
+            GPIOx->AFRL &= ~(0x03 << 2*(LpConfig->PinId));
             /* Set the correspond bits field */
             GPIOx->AFRL |= (LpConfig->AlternativeMode) << 2*(LpConfig->PinId);
         }
         else if (LpConfig->AlternativeMode <= 15) {
             /* Clean the correspond bits field first */
-            GPIOx->AFRH &= ~(0x11 << 2*(LpConfig->PinId));
+            GPIOx->AFRH &= ~(0x03 << 2*(LpConfig->PinId));
             /* Set the correspond bits field */
             GPIOx->AFRH |= (LpConfig->AlternativeMode) << 2*(LpConfig->PinId);
         }
@@ -149,7 +149,7 @@ FUNC(void) Port_HwSetPinMode(GPIO_RegType *GPIOx, Port_PinType PinId, Port_PinMo
     /* Config pin mode for Input, Output, Alternate and Analog mode */
     if (PinMode <= PIN_ANALOG_MODE) {
         /* Clean the correspond bits field first */
-        GPIOx->MODER &= ~(0x11 << 2*(PinId));
+        GPIOx->MODER &= ~(0x03 << 2*(PinId));
         /* Set the correspond bits field */
         GPIOx->MODER |= (PinMode) << 2*(PinId);
     }
@@ -213,13 +213,13 @@ FUNC(void) Port_HwSetToAlternateMode(GPIO_RegType *GPIOx, Port_PinType PinId, Po
     /* Config alternate functionality */
     if (AltMode <= 7) {
         /* Clean the correspond bits field first */
-        GPIOx->AFRL &= ~(0x11 << 2*(PinId));
+        GPIOx->AFRL &= ~(0x03 << 2*(PinId));
         /* Set the correspond bits field */
         GPIOx->AFRL |= (AltMode) << 2*(PinId);
     }
     else if (AltMode <= 15) {
         /* Clean the correspond bits field first */
-        GPIOx->AFRH &= ~(0x11 << 2*(PinId));
+        GPIOx->AFRH &= ~(0x03 << 2*(PinId));
         /* Set the correspond bits field */
         GPIOx->AFRH |= (AltMode) << 2*(PinId);
     }
