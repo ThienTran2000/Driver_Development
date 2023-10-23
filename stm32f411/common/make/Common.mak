@@ -4,65 +4,66 @@ MACH=cortex-m4
 CFLAGS= -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F411VETx -DSTM32 -DSTM32F4 -c -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP --specs=nano.specs -mfloat-abi=hard -mthumb
 LDFLAGS= -nostdlib -T $(ROOT_FOLDER)\common\linker\linker_script.ld
 
-ROOT_FOLDER=U:\stm32f411
-DEBUG_PATH = $(ROOT_FOLDER)\common\obj
+ROOT_FOLDER=..\..
+OBJECT_OUTPUT_PATH = $(ROOT_FOLDER)\common\obj
 
 CC_FILE_TO_BUILD = \
-	$(ROOT_FOLDER)\common\startup\startup.s \
-	$(ROOT_FOLDER)\module\dio\src\Dio.c \
-	$(ROOT_FOLDER)\module\dio\src\DioLLDriver.c \
-	$(ROOT_FOLDER)\module\port\src\Dio.c \
-	$(ROOT_FOLDER)\module\port\src\PortLLDriver.c \
-	$(ROOT_FOLDER)\module\port\sample_app\src\App_PORT_Sample.c
+	$(PATH_TO_MAIN_FILE) \
 
 CC_INCLUDE_PATH = \
+	-I$(PATH_TO_INCLUDE_DIR) \
 	-I$(ROOT_FOLDER)\common\device \
-	-I$(ROOT_FOLDER)\module\dio\include \
-	-I$(ROOT_FOLDER)\module\dio\sample_app\include \
-	-I$(ROOT_FOLDER)\module\port\include \
-	-I$(ROOT_FOLDER)\module\port\sample_app\include
 
-App_PORT_Sample.elf:$(DEBUG_PATH)\startup.o $(DEBUG_PATH)\Dio.o $(DEBUG_PATH)\PortLLDriver.o $(DEBUG_PATH)\Port.o $(DEBUG_PATH)\DioLLDriver.o $(DEBUG_PATH)\App_PORT_Sample.o
-	@echo Linking...
-	$(CC) $(LDFLAGS) -o $(DEBUG_PATH)\$@ $^
-	@echo Done
-	@echo -----------------------------------------------------
+ASM_FILE_TO_BUILD = \
+	$(ROOT_FOLDER)\common\startup\startup.s
 
-$(DEBUG_PATH)\startup.o:$(ROOT_FOLDER)\common\startup\startup.s
+OBJECT_FILE_NAME = \
+	$(CC_FILE_TO_BUILD:.c=.o) \
+	$(ASM_FILE_TO_BUILD:.s=.o)
+
+CC_SRC_PATH = $(patsubst %/,%,$(dir $(PATH_TO_MAIN_FILE))) \
+
+define include_makefiles
+include $(ROOT_FOLDER)\module\$(1)\make\stm32f411_$(2)_defs_rules.mak
+endef
+
+$(foreach module, $(MODULE), $(eval $(call include_makefiles,$(module),$(module))))
+
+OBJECT_FILE_BUILD = $(notdir $(OBJECT_FILE_NAME))
+
+OBJECT_PATH_FILE_BUILD = $(addprefix $(OBJECT_OUTPUT_PATH)\,$(notdir $(OBJECT_FILE_NAME)))
+
+EXE_FILE_SUFFIX = .elf
+
+EXE = $(addsuffix $(EXE_FILE_SUFFIX),$(basename $(notdir $(PATH_TO_MAIN_FILE))))
+
+vpath %.c $(CC_SRC_PATH) U:\stm32f411\module\port\sample_app\src
+vpath %.s $(ROOT_FOLDER)\common\startup
+
+%.o: %.c
 	@echo Compiling $@ ...
-	$(CC) $(CFLAGS) $(CC_INCLUDE_PATH) $< -o $@
+	$(CC) $(CFLAGS) $(CC_INCLUDE_PATH) $< -o $(OBJECT_OUTPUT_PATH)\$@
 	@echo Done 
-	@echo -----------------------------------------------------
+	@echo -----------------------------------------------------------
 
-$(DEBUG_PATH)\Dio.o:$(ROOT_FOLDER)\module\dio\src\Dio.c
+%.o: %.s
 	@echo Compiling $@ ...
-	$(CC) $(CFLAGS) $(CC_INCLUDE_PATH) $< -o $@
-	@echo Done
-	@echo -----------------------------------------------------
+	$(CC) $(CFLAGS) $(CC_INCLUDE_PATH) $< -o $(OBJECT_OUTPUT_PATH)\$@
+	@echo Done 
+	@echo -----------------------------------------------------------
 
-$(DEBUG_PATH)\DioLLDriver.o:$(ROOT_FOLDER)\module\dio\src\DioLLDriver.c
-	@echo Compiling $@ ...
-	$(CC) $(CFLAGS) $(CC_INCLUDE_PATH) $< -o $@
+$(EXE):$(OBJECT_FILE_BUILD)
+	@echo Linking $@ ...
+	$(CC) $(LDFLAGS) -o $(OBJECT_OUTPUT_PATH)\$@ $(OBJECT_PATH_FILE_BUILD)
 	@echo Done
-	@echo -----------------------------------------------------
+	@echo -----------------------------------------------------------
 
-$(DEBUG_PATH)\Port.o:$(ROOT_FOLDER)\module\port\src\Port.c
-	@echo Compiling $@ ...
-	$(CC) $(CFLAGS) $(CC_INCLUDE_PATH) $< -o $@
-	@echo Done
-	@echo -----------------------------------------------------
-
-$(DEBUG_PATH)\PortLLDriver.o:$(ROOT_FOLDER)\module\port\src\PortLLDriver.c
-	@echo Compiling $@ ...
-	$(CC) $(CFLAGS) $(CC_INCLUDE_PATH) $< -o $@
-	@echo Done
-	@echo -----------------------------------------------------
-
-$(DEBUG_PATH)\App_PORT_Sample.o:$(ROOT_FOLDER)\module\port\sample_app\src\App_PORT_Sample.c
-	@echo Compiling $@ ...
-	$(CC) $(CFLAGS) $(CC_INCLUDE_PATH) $< -o $@
-	@echo Done
-	@echo -----------------------------------------------------
+test:
+	@echo $(OBJECT_FILE_BUILD)
+	@echo $(CC_SRC_PATH)
+	@echo $(OBJECT_PATH_FILE_BUILD)
+	@echo $(CC_FILE_TO_BUILD)
+	@echo $(dir $(PATH_TO_MAIN_FILE))
 
 clean:
 	rm -rf ../obj/*.*

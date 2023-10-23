@@ -95,6 +95,7 @@ int main() {
 
     /* Testing for external interrupt */
     Port_InterruptConfig(6, 5, ENABLE);
+    (void)LddLevel;
     while(1);
 }
 
