@@ -21,7 +21,7 @@ OBJECT_FILE_NAME = \
 	$(CC_FILE_TO_BUILD:.c=.o) \
 	$(ASM_FILE_TO_BUILD:.s=.o)
 
-CC_SRC_PATH = $(patsubst %/,%,$(dir $(PATH_TO_MAIN_FILE))) \
+CC_SRC_PATH += \
 
 define include_makefiles
 include $(ROOT_FOLDER)\module\$(1)\make\stm32f411_$(2)_defs_rules.mak
@@ -37,7 +37,7 @@ EXE_FILE_SUFFIX = .elf
 
 EXE = $(addsuffix $(EXE_FILE_SUFFIX),$(basename $(notdir $(PATH_TO_MAIN_FILE))))
 
-vpath %.c $(CC_SRC_PATH) U:\stm32f411\module\port\sample_app\src
+vpath %.c $(CC_SRC_PATH)
 vpath %.s $(ROOT_FOLDER)\common\startup
 
 %.o: %.c
@@ -59,11 +59,7 @@ $(EXE):$(OBJECT_FILE_BUILD)
 	@echo -----------------------------------------------------------
 
 test:
-	@echo $(OBJECT_FILE_BUILD)
 	@echo $(CC_SRC_PATH)
-	@echo $(OBJECT_PATH_FILE_BUILD)
-	@echo $(CC_FILE_TO_BUILD)
-	@echo $(dir $(PATH_TO_MAIN_FILE))
 
 clean:
 	rm -rf ../obj/*.*

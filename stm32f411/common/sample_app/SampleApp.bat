@@ -11,8 +11,14 @@ IF "%~2" == "" (
     GOTO HELP
 ) ELSE (
     SET PATH_TO_MAIN_FILE=%~2
-    for /F "delims=" %%i in ("!PATH_TO_MAIN_FILE!") do set IMAGE_FILE=%%~nxi
-    SET IMAGE_FILE=%IMAGE_FILE:.c=.elf%
+    SET IMAGE_FILE=
+    SET CC_SRC_PATH_MAIN=
+    for /F "delims=" %%i in ("!PATH_TO_MAIN_FILE!") do (
+        SET IMAGE_FILE=%%~nxi
+        SET CC_SRC_PATH_MAIN=%%~dpi
+    )
+    SET IMAGE_FILE=!IMAGE_FILE:.c=.elf!
+    SET CC_SRC_PATH=!CC_SRC_PATH_MAIN:~0,-1!
 )
 
 IF "%~3" == "" (
@@ -20,6 +26,7 @@ IF "%~3" == "" (
 ) ELSE (
     SET PATH_TO_INCLUDE_DIR=%~3
     call make -f ../make/Common.mak clean > NUL
+    call make -f ../make/Common.mak test
     call make -f ../make/Common.mak !IMAGE_FILE!
     GOTO END
 )
