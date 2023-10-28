@@ -58,8 +58,5 @@ $(EXE):$(OBJECT_FILE_BUILD)
 	@echo Done
 	@echo -----------------------------------------------------------
 
-test:
-	@echo $(CC_SRC_PATH)
-
 clean:
 	rm -rf ../obj/*.*

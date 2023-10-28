@@ -26,7 +26,6 @@ IF "%~3" == "" (
 ) ELSE (
     SET PATH_TO_INCLUDE_DIR=%~3
     call make -f ../make/Common.mak clean > NUL
-    call make -f ../make/Common.mak test
     call make -f ../make/Common.mak !IMAGE_FILE!
     GOTO END
 )
